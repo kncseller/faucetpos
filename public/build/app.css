@@ -1,0 +1,189 @@
+/**
+     * Loader screen
+     */
+    body:not(.loaded)>*{visibility:hidden}.box-row-col{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.box-row-col .a-col{position:relative}.box-row-col .a-auto{height:100%;overflow-y:scroll;-webkit-box-flex:1;-ms-flex:1;flex:1}.screen_box{visibility:visible!important;position:absolute;top:0;left:0;width:100%;height:100%;z-index:10000000000000000;background:url(https://picsum.photos/1024/1024) 0 0/cover no-repeat #fff}.lds-ripple{display:inline-block;position:relative;width:80px;height:80px}.lds-ripple div{position:absolute;border:4px solid #ed1b3a;opacity:1;border-radius:50%;-webkit-animation:1s cubic-bezier(0,.2,.8,1) infinite lds-ripple;animation:1s cubic-bezier(0,.2,.8,1) infinite lds-ripple}.lds-ripple div:nth-child(2){-webkit-animation-delay:-.5s;animation-delay:-.5s}@-webkit-keyframes lds-ripple{0%{top:36px;left:36px;width:0;height:0;opacity:1}100%{top:0;left:0;width:72px;height:72px;opacity:0}}@keyframes lds-ripple{0%{top:36px;left:36px;width:0;height:0;opacity:1}100%{top:0;left:0;width:72px;height:72px;opacity:0}}
+
+
+.infoshop{}
+.infoshop .action-right img{
+        width: 24px;
+    height: 24px;
+}
+
+.bg{
+    position: relative;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.groupactive>.active{
+    box-shadow: 0 0 1px 1px #607D8B;
+}
+.tabsmenu li.active{
+    box-shadow: none;
+}
+
+.lr>*:last-child{
+    flex:1;
+}
+
+/*https://codepen.io/LucasG/pen/GRvppap*/
+.couponbox .cardbox {
+  width: 400px;
+  height: 180px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+  background-color: #eee;
+  padding: 10px 10px;
+  position: relative;
+}
+
+.couponbox .main,
+.couponbox .copy-button {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+}
+
+.couponbox .main {
+  height: 105px;
+}
+
+.couponbox .coupon-rate {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 132px;
+}
+
+.couponbox .coupon-rate h1 {
+  font-size: 35px;
+  color: #565656;
+}
+
+.couponbox .vertical {
+  border-left: 5px dotted black;
+  height: 100px;
+  position: absolute;
+  left: 40%;
+}
+
+.couponbox .cardbox::after {
+  position: absolute;
+  content: "";
+  height: 40px;
+  right: -20px;
+  border-radius: 40px;
+  z-index: 1;
+  top: 70px;
+  background-color: #fff;
+  width: 40px;
+}
+
+.couponbox .cardbox::before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  left: -20px;
+  border-radius: 40px;
+  z-index: 1;
+  top: 70px;
+  background-color: #fff;
+  width: 40px;
+}
+
+.couponbox .content {
+  padding-right: 25px;
+}
+
+.couponbox .content h2 {
+  font-size: 18px;
+  color: #565656;
+  text-transform: uppercase;
+}
+
+.couponbox .content p {
+  font-size: 16px;
+  color: #696969;
+}
+
+.couponbox .copy-button {
+  margin: 12px 0 -5px 0;
+  height: 45px;
+  padding: 0 5px;
+  border-top: 2px solid #ccc;
+}
+
+.couponbox  .copy-button button {
+  padding: 5px 20px;
+  background-color: #dc143c;
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.bootbox.special{
+        z-index: 100000000000000000;
+    }
+    .bootbox.special .modal-dialog{
+        height: 97%!important;
+    }
+    .form-group { 
+    position: relative;
+}
+.btn.no{
+        background-color: transparent;
+    color: initial;
+}
+
+.bg,.img{
+    background-color: #fafafa;
+}
+
+ 
+.pageproduct .imgblock .bg{height: 175px;width: 100%;}
+
+.groupcate{
+        height: 100%;
+    overflow-y: auto;
+}
+.groupcate .item{
+    width: 70px;
+    text-align: center;
+    margin-bottom: 8px;
+        box-shadow: none !important;
+     
+}
+.groupcate .item.active{
+    color: var(--secondary);
+
+}
+.groupcate .item .bg{
+    width: 55px;
+    height: 45px;
+       border: 1px solid transparent;
+    
+    border-radius: 8px;
+}
+.groupcate .item.active .bg{
+     border-color:var(--secondary);
+}
+.groupcate .item .bg .badge{
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+}
+.groupcate .item .bg{}
+.groupproduct{
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+}
+.h100{
+    height:100%;
+}
+
+#shopmenu{
+    overflow: hidden;
+}
