@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-//import { rootDomain } from '@/lib/utils';
+import { rootDomain } from '@/lib/utils';
 
 const appconfig={
    domainapi :'https://f7.donggiatri.com/users/demo/pluto/'
