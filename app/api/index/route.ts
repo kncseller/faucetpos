@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server';
 import { cookies, headers } from 'next/headers';
-import { withAuth } from '@/lib/with-auth';
+//import { withAuth } from '@/lib/with-auth';
  import axios from 'axios';
 
 const appconfig={
