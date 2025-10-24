@@ -7,6 +7,10 @@ const appconfig={
 
 const domains = {
   "cafe":"pos/",
+  "food":"pos/",
+  "shop":"pos/",
+  "karaoke":"pos/",
+  "bida":"pos/"
   // "chat":"chat/"
 };
 
