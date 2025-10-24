@@ -10,8 +10,7 @@ const domains = {
   "food":"pos/",
   "shop":"pos/",
   "karaoke":"pos/",
-  "bida":"pos/"
-  // "chat":"chat/"
+  "bida":"pos/" 
 };
 
 function extractSubdomain(request: NextRequest): string | null {
