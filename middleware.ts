@@ -6,6 +6,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 // };
 
 const domains = {
+  "/":"pos/",
   "cafe":"pos/",
   "food":"pos/",
   "shop":"pos/",
@@ -19,23 +20,32 @@ function extractSubdomain(request: NextRequest): string | null {
   const hostname = host.split(':')[0];
 
 
+  
+  // Local development environment
+  if (url.includes('localhost') || url.includes('127.0.0.1')) {
+    // Try to extract subdomain from the full URL
+    const fullUrlMatch = url.match(/http:\/\/([^.]+)\.localhost/);
+    if (fullUrlMatch && fullUrlMatch[1]) {
+      return fullUrlMatch[1];
+    }
+
+    // Fallback to host header approach
+    if (hostname.includes('.localhost')) {
+      return hostname.split('.')[0];
+    }
+
+    if (hostname.includes('.vercel.app')) {
+      return "/";
+    }
+
+    if(hostname.split('.').length>1){
+      return "/";
+    }
+
+    return null;
+  }
+
   return hostname.includes('.')?hostname.split('.').slice(0, -2).join('.'):null;
-
-  // // Local development environment
-  // if (url.includes('localhost') || url.includes('127.0.0.1')) {
-  //   // Try to extract subdomain from the full URL
-  //   const fullUrlMatch = url.match(/http:\/\/([^.]+)\.localhost/);
-  //   if (fullUrlMatch && fullUrlMatch[1]) {
-  //     return fullUrlMatch[1];
-  //   }
-
-  //   // Fallback to host header approach
-  //   if (hostname.includes('.localhost')) {
-  //     return hostname.split('.')[0];
-  //   }
-
-  //   return null;
-  // }
 
   // // Production environment
   // const rootDomainFormatted = rootDomain.split(':')[0];
@@ -58,39 +68,74 @@ function extractSubdomain(request: NextRequest): string | null {
 }
 
 export async function middleware(request: NextRequest) {
+  const origin = request.headers.get('origin');
+  // const country = request.geo?.country || 'US';
+ 
+  // Define allowed origins dynamically
+  const allowedOrigins = process.env.NODE_ENV === 'production' 
+    ? ['https://app.example.com', 'https://admin.example.com']
+    : ['http://localhost:3000', 'http://localhost:3001'];
+  
+  const isAllowedOrigin = origin && allowedOrigins.includes(origin);
+  
+  // Handle preflight requests
+  if (request.method === 'OPTIONS') {
+    return new Response(null, {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': isAllowedOrigin ? origin : 'null',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, auth-token',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Max-Age': '86400',
+      },
+    });
+  }
+
   const { pathname } = request.nextUrl;
   let subdomain = extractSubdomain(request);
 
+
+  // On the root domain, allow normal access
+  let response= NextResponse.next();
+
   if (subdomain) {
-    subdomain = domains[subdomain]||subdomain;
+
+
+    if(subdomain.includes("admin")){
+       subdomain = "admin";
+    }else{
+       subdomain = domains[subdomain]||subdomain;
+    }
+
+   
 
     // Block access to admin page from subdomains
     if (pathname.startsWith('/admin')) {
-      return NextResponse.redirect(new URL('/', request.url));
-    }
-
-    // For the root path on a subdomain, rewrite to the subdomain page
-    if (pathname === '/') {
-      return NextResponse.rewrite(new URL(`/s/${subdomain}`, request.url));
-    }
-    //detail api
-     if (pathname.startsWith('/api/')) { 
-        return NextResponse.json(new URL(`/s/${subdomain}/api/index/`, request.url));
-      }
-  }
-
-  if (pathname != '/') {
-
+      response =  NextResponse.redirect(new URL('/', request.url));
+    }else if (pathname === '/') {
+      // For the root path on a subdomain, rewrite to the subdomain page
+      response = NextResponse.rewrite(new URL(`/s/${subdomain}`, request.url));
+    }else if (pathname.startsWith('/api/')) { 
       //detail api
-      if (pathname.startsWith('/api/')) { 
-        return NextResponse.json(new URL('/api/index/', request.url));
-      }
-
-      return NextResponse.rewrite(new URL('/', request.url));
+      response = NextResponse.json(new URL(`/s/${subdomain}/api/index/`, request.url));
+    }
+  }else if (pathname != '/') {
+    //detail api
+    if (pathname.startsWith('/api/')) { 
+      response = NextResponse.json(new URL('/api/index/', request.url));
+    }else{
+      response = NextResponse.rewrite(new URL('/', request.url));
+    } 
+      
   }
 
-  // On the root domain, allow normal access
-  return NextResponse.next();
+  if (isAllowedOrigin) {
+    response.headers.set('Access-Control-Allow-Origin', origin);
+    response.headers.set('Access-Control-Allow-Credentials', 'true');
+  }
+
+  return response;
 }
 
 export const config = {
