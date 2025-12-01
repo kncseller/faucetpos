@@ -20,6 +20,11 @@ function extractSubdomain(request: NextRequest): string | null {
   const hostname = host.split(':')[0];
 
 
+  if (hostname.includes('.vercel.app')) {
+    return "/";
+  }
+
+  
   
   // Local development environment
   if (url.includes('localhost') || url.includes('127.0.0.1')) {
@@ -34,13 +39,6 @@ function extractSubdomain(request: NextRequest): string | null {
       return hostname.split('.')[0];
     }
 
-    if (hostname.includes('.vercel.app')) {
-      return "/";
-    }
-
-    if(hostname.split('.').length>1){
-      return "/";
-    }
 
     return null;
   }
@@ -105,7 +103,7 @@ export async function middleware(request: NextRequest) {
     if(subdomain.includes("admin")){
        subdomain = "admin";
     }else{
-       subdomain = domains[subdomain]||subdomain;
+       subdomain = domains[subdomain]?domains[subdomain]:domains["/"];
     }
 
    
