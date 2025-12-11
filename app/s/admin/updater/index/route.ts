@@ -87,20 +87,20 @@ export async function POST(request: NextRequest) {
 
   // parse form with a Promise wrapper
   
-  const data = await parseBody(request);
+  // const data = await parseBody(request);
 
-    try {
-            const imageFile = data.files.image; // .image because I named it in client side by that name: // pictureData.append('image', pictureFile);
-            const imagePath = imageFile.filepath;
-            const pathToWriteImage = `public/...`; // include name and .extention, you can get the name from data.files.image object
-            const image = await fs.readFile(imagePath);
-            await fs.writeFile(pathToWriteImage, image);
-            //store path in DB
-            res.status(200).json({ message: 'image uploaded!'});
-        } catch (error) {
-            res.status(500).json({ message: error.message });
-            return;
-        }
+  //   try {
+  //           const imageFile = data.files.image; // .image because I named it in client side by that name: // pictureData.append('image', pictureFile);
+  //           const imagePath = imageFile.filepath;
+  //           const pathToWriteImage = `public/...`; // include name and .extention, you can get the name from data.files.image object
+  //           const image = await fs.readFile(imagePath);
+  //           await fs.writeFile(pathToWriteImage, image);
+  //           //store path in DB
+  //           res.status(200).json({ message: 'image uploaded!'});
+  //       } catch (error) {
+  //           res.status(500).json({ message: error.message });
+  //           return;
+  //       }
 
   
   // url = appconfig.domainapi+pathname; 
