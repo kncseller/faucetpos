@@ -50,23 +50,13 @@ export async function GET(request: NextRequest) {
   
   // url = appconfig.domainapi+pathname; 
   let path =await root(`s/${subdomain}/`);
-  // console.log(path);
-
-  var files = {};
-  files[`${path}index.html`] = "https://accessbeta.donggiatri.com/v1/cua-hang/";
-  files[`${path}app.min.js`] = "https://banhang.donggiatri.com/build/app.min.js";
-  files[`${path}jscore.js`] = "https://banhang.donggiatri.com/build/jscore.js";
-  files[`${path}app.min.css`] = "https://banhang.donggiatri.com/build/app.min.css";
-  files[`${path}csscore.css`] = "https://banhang.donggiatri.com/build/csscore.css";
-
-  var alls =[];
-  for(var i in files){
-    alls.push(dl(files[i],i));
-  }
-   
-  Promise.all(alls).then(function(values){
-
-  });
+ 
+   await dl("https://accessbeta.donggiatri.com/v1/cua-hang/",`${path}index.html`);
+   await dl("https://banhang.donggiatri.com/build/app.min.js",`${path}app.min.js`);
+   await dl("https://banhang.donggiatri.com/build/jscore.js",`${path}jscore.js`);
+   await dl("https://banhang.donggiatri.com/build/app.min.css",`${path}app.min.css`);
+   await dl("https://banhang.donggiatri.com/build/csscore.css",`${path}csscore.css`);
+  
 
   let transformed = {ok:1};
 
