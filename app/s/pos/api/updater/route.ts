@@ -9,6 +9,8 @@ import { extractSubdomain } from '@/lib/utils';
   import { promises as fs } from 'fs';
 import path from "path";
 
+import { revalidatePath } from 'next/cache';
+
 
  function parseBody(request){
    return new Promise((resolve, reject) => {
