@@ -24,7 +24,7 @@ const domains = {
 };
 
 
-export function extractSubdomain(request: NextRequest): string | null {
+export function extractSubdomain(request) {
   const url = request.url;
   const host = request.headers.get('host') || '';
   const hostname = host.split(':')[0];
