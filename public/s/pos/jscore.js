@@ -1,13 +1,16 @@
+ 
 var matchs = new RegExp("v1\/([0-9a-z]+)\/([^\/\?]+)\/(.*)", "g").exec(document.location.pathname);
 var appconfig={
-     
-       shop_id :"",
-      type: "ban-hang",
+      root: "/s/pos//",
+      api_key:"DEMO",
+      domain:"https://banhang.donggiatri.com/",
+      shop_id :"",
+      type: "cua-hang",
       id_outlet: "0",
-      id_pos: "",
-      domain:"https://acuamientay.click/",
+      id_pos: ""
 };
 var CURRENCY = "đ";
+ 
 window.AppRequest = (function(win){
  
       var shop_id = appconfig.shop_id;
@@ -466,7 +469,7 @@ function IP(){
 
   function site_url(url){
 
-    return url.includes("http")?url:appconfig.domain+url;
+    return url.includes("http")?url:"/"+url;
 
   }
 
@@ -654,40 +657,94 @@ function htmlbody(){
 
      </div>
      <div class="blocksearch">
-        --
+        <input type="text" class="form-control s-func" placeholder="Tìm kiếm">
      </div>
     </div>
-    <div class="reportall roleaccess _primary_bg">
-       <div class="lr">
-          <span class="dateoutlet">07/07/2025</span>
-          <span>
-              <input type="date" class="form-control" />
-          </span>
-       </div>
-          <div class="line flex-row" style='    justify-content: space-between;'>
-             <button class="btn btn-success no">
-                Đang xử lý
-               <div class='total_sale'>0</div> 
-             </button>
-             <button class="btn btn-info no">
-                Tiền cần thu
-               <div class='money_need_got'>0</div> 
-             </button>
-          </div>
-      </div>
+    
 
     <div class="body"> 
+      <div class="reportall roleaccess">
+       
+       <h3>Báo cáo</h3>
+       <div class="lr infoshopnow">
+           <div class="flex-row-col">
+                <div class="logo bg" style="width:55px;height:55px;background-image:url(https://placehold.co/75x75/cecece/333/png)">
+                    
+                </div>
+                <div class="bname">
+                    <div class="shop">AVFGG</div>
+                    <div class="small">HCM</div>
+                </div>
+           </div>
+           <div class="lr">
+              <input type="date" class="form-control dateoutletinput" value="2025-07-07" />
+           </div>
+       </div>
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="flex-wrap  itemreport">
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Tháng này</p>
+                            <div class="month_total_month">0</div>
+                        </div>
+                    </div>
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Tuần này</p>
+                            <div class="week_total_week">0</div>
+                        </div>
+                    </div>
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Doanh thu </p>
+                            <div class="total_sale_complete">0</div>
+                        </div>
+                    </div>
+
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Đơn hàng</p>
+                            <div class="total_inv">0</div>
+                        </div>
+                    </div>
+
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Đang xử lý </p>
+                            <div class="total_sale_pending">0</div>
+                        </div>
+                    </div>
+
+                    <div class="white-view itemr">
+                        <div class="icon bg" style="background-image:url(https://placehold.co/75x75/cecece/333/png)"></div>
+                        <div class="bbody">
+                            <p>Tiền cần thu</p>
+                            <div class="money_need_got">0</div>
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="col-md-4 col-xs-12">
+                 
+                <div class="white-view">
+                     <h3>Báo cáo tháng này</h3>
+                    <div class="chartweek"  style="width: 100%;min-height:175px">
+                          
+                    </div>   
+                </div>  
+            </div>
+        </div>
+         
+      </div>
       <div class="reportalla roleaccess text-center">
-          <div class="line items" style='    justify-content: space-between;'>
-             <div class="">
-                Doanh thu
-               <div class='total_sale'>0</div> 
-             </div>
-             <div class="">
-                Đơn hàng
-               <div class='total_inv'>0</div> 
-             </div>
-          </div>
+           
       </div>
        
       
@@ -701,7 +758,7 @@ function htmlbody(){
 
     <div class="foot">
 
-      <p>Hotline: <a href="tel:+8489 837 2448" style="color: #fff">+840000000</a></p> 
+      <p>Hotline: <a href="tel:+84779694868" style="color: #fff">+84779694868</a></p> 
 
       <div style="text-align: center;">
 
@@ -1252,43 +1309,90 @@ function main(){
       </div>`;
   });
 
+  f7Shortcode.add("slider",function(data,page){
+    var id = "popups"+Date.now();
+       // var url =site_url_pos();
+      var s= `<div class="${id}"><div class="swiper-wrapper popups">${data.popups.map(function(v){
+                          v.content = new Handlebars.SafeString(decodeHTMLEntities(v.content));
+                         return Handlebars.compile(`<div class="swiper-slide popupitem">
+                            <div class="body">{{content}}</div>
+                        </div>`)(v);
+                    }).join("")}</div><div class="swiper-pagination"></div>
+        </div> `;
+      setTimeout(function(){
+        var dialog = $("."+id);
+        var options = $.extend({
+            pagination: dialog.find(".swiper-pagination")[0],
+            paginationClickable: true,
+            parallax: true,
+            speed: 600,
+            autoplay: 3500,
+            loop: true,
+            grabCursor: true 
+          },data,true);
+        var swiper = new Swiper(dialog.find(".popups")[0], options);
+
+      },100);
+      return s;
+  });
+
    
   //load pr and publci data app
   $(document).ready(function(){
      AppRequest.pr();
 
 
+     $(document).on("change",".s-func",function(e){
+        var v = this.value.toLowerCase(); 
+        var li = $(".allactions li");
+        if(v){
+            li.each(function(){
+                var me = $(this);
+                var text = me.text().trim().toLowerCase().make_slug().replaceAll("-","");
+                if(text.includes(v)){
+                    $(this).show();
+                }else{
+                    $(this).hide();
+                }
+            });
+        }else{
+            li.show();
+        }
+     });
   });
 
   
    $(document).on("onApp",function(e){ 
 
-      var popups = AppConfig.popup||[]; 
-      if(popups.length){
-          var dialog = bootbox.dialog({
-            className:"modal-flex1",
-            title :"Quảng cáo",
-            message:`<div style="    height: 100%;" class="swiper-container swiperpopup"><div class="swiper-wrapper popups">${popups.map(function(v){
-                      v.content = new Handlebars.SafeString(decodeHTMLEntities(v.content));
-                     return Handlebars.compile(`<div class="swiper-slide popupitem">
-                        <div class="body">{{content}}</div>
-                    </div>`)(v);
-                }).join("")}</div><div class="swiper-pagination"></div></div>`
-          });
-          dialog.init(function(){
-            dialog.find(".modal-header").addClass("header");
-            var swiper = new Swiper(dialog.find(".swiperpopup")[0], {
-                pagination: dialog.find(".swiper-pagination")[0],
-                paginationClickable: true,
-                parallax: true,
-                speed: 600,
-                autoplay: 3500,
-                loop: true,
-                grabCursor: true 
+      setTimeout(function(){
+          var popups = AppConfig.popup||[]; 
+          if(popups.length){
+              var dialog = bootbox.dialog({
+                className:"modal-flex",
+                title :"Quảng cáo",
+                message:`<div class="swiper-wrapper popups">${popups.map(function(v){
+                          v.content = new Handlebars.SafeString(decodeHTMLEntities(v.content));
+                         return Handlebars.compile(`<div class="swiper-slide popupitem">
+                            <div class="body">{{content}}</div>
+                        </div>`)(v);
+                    }).join("")}</div><div class="swiper-pagination"></div>`
               });
+              dialog.init(function(){
+                dialog.find(".modal-header").addClass("header");
+             
+                var swiper = new Swiper(dialog.find(".popups")[0], {
+                    pagination: dialog.find(".swiper-pagination")[0],
+                    paginationClickable: true,
+                    parallax: true,
+                    speed: 600,
+                    autoplay: 3500,
+                    loop: true,
+                    grabCursor: true 
+                  });
 
-        });
-      }
+            });
+          }
+      },10*1000);
 
    });
   //watch and wait notice from admin
@@ -1347,68 +1451,6 @@ function main(){
 
  
 }
-
-
-
-function LoadCSS(e){return new Promise(function(n,t){var o=document.createElement("link");o.rel="stylesheet",o.href=e,document.head.appendChild(o),o.onload=function(){n(),console.log("CSS has loaded!")}})}function LoadJS(e){return new Promise(function(n,t){var o=document.createElement("script");o.type="text/javascript",o.src=e,document.head.appendChild(o),o.onload=function(){n(),console.log("JS has loaded!")},o.onerror=function(){}})}
-
-// var root = document.location.host.includes(".byethost")?"https://"+document.location.host+"/":"/build/";
-var root = "/s/pos/";
- 
- 
- 
-window.onload = function(){
-
-    document.querySelector(".imgbox").innerHTML =`<img src="${AppRequest.logo()}" width="125" alt="">`
-};
- 
-function setupTheme(){
-    (function(win){
-        var key = "setting_staff";
-        var settings = storage(key); 
-        win.AClient = {
-            settings: settings||{
-                synce_takeaway:1,
-                allow_print:1,
-                socket_url:'',
-                html_print:''
-            },
-            save : function(){
-                storage(key,this.settings); 
-            }
-        };
-        if(win.AClient.settings.html_print){
-            win.printTempate = decodeHTMLEntities(win.AClient.settings.bill_80||win.AClient.settings.html_print);
-        }
-        
-        
-
-        $(document).on("onUserLogout",function(e){
-          storage(key,'{}'); 
-        });
-    })(window);
-
-}
-
-LoadCSS(root+"app.min.css?t=1760009170").then(function(){
-   LoadJS(root+"app.min.js?i=1&t=1760009170").then(function(){ 
-    $("body").append(htmlbody());
-
-
-    setupTheme();
-
-
-    $(document).on("onApp",function(){ 
-        window.localStorage.setItem("_logo",AppRequest.logo());
-    });
-
-      main();
-
-      $("body").addClass("loaded");
-
-      LoadCSS(root+"/font.css?t=3",function(){});
-   });
-});
 
 window.MyTabs= function(options){
       var tabs = {};
@@ -1492,6 +1534,94 @@ window.MyTabs= function(options){
     return methods;
   };
  
+
+
+ 
+
+function LoadCSS(e){return new Promise(function(n,t){var o=document.createElement("link");o.rel="stylesheet",o.href=e,document.head.appendChild(o),o.onload=function(){n(),console.log("CSS has loaded!")}})}function LoadJS(e){return new Promise(function(n,t){var o=document.createElement("script");o.type="text/javascript",o.src=e,document.head.appendChild(o),o.onload=function(){n(),console.log("JS has loaded!")},o.onerror=function(){}})}
+
+
+ 
+ 
+window.addEventListener("load",function(){
+
+    document.querySelector(".imgbox").innerHTML =`<img src="${AppRequest.logo()}" width="125" alt="">`
+});
+
+
+
+(function(win){
+    var loaded = 0;
+    var load=[];
+   LoadJS("https://www.gstatic.com/charts/loader.js").then(function(){
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(function(){
+            loaded =1;
+            load.map(function(v){
+                v();
+            });
+            load=[];
+        });
+    }); 
+    win.ChartReady = function(f){
+        if(loaded){
+            f();
+        }else{
+            load.push();
+        }
+    }; 
+})(window);
+
+
+function setupTheme(){
+    (function(win){
+        var key = "setting_staff";
+        var settings = storage(key); 
+        win.AClient = {
+            settings: settings||{
+                synce_takeaway:1,
+                allow_print:1,
+                socket_url:'',
+                html_print:''
+            },
+            save : function(){
+                storage(key,this.settings); 
+            }
+        };
+        if(win.AClient.settings.html_print){
+            win.printTempate = decodeHTMLEntities(win.AClient.settings.bill_80||win.AClient.settings.html_print);
+        }
+        
+        
+
+        $(document).on("onUserLogout",function(e){
+          storage(key,'{}'); 
+        });
+    })(window);
+
+}
+
+LoadCSS(appconfig.root+"app.min.css?t=").then(function(){
+   LoadJS(appconfig.root+"app.min.js?i=1&t=").then(function(){ 
+    $("body").append(htmlbody());
+
+
+    setupTheme();
+
+
+    $(document).on("onApp",function(){ 
+        window.localStorage.setItem("_logo",AppRequest.logo());
+    });
+
+      main();
+
+      $("body").addClass("loaded");
+
+      LoadCSS("/assets/font.css?t=3",function(){});
+   });
+});
+
+
 
 
 // setInterval(function(){
