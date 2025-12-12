@@ -30,7 +30,7 @@ import { revalidatePath } from 'next/cache';
  
 // export const GET = withAuth(secretGET);
 
-async function dl(url,file,f: any=null){
+async function dl(url,file,f: any){
   let res = await axios.get(url);
   let pathToWriteImage = file; 
   
@@ -62,13 +62,13 @@ export async function GET(request: NextRequest) {
   
   try {
 
-   await dl("https://accessbeta.donggiatri.com/v1/cua-hang/",`${path}index.html`);
-   await dl("https://banhang.donggiatri.com/build/app.min.js",`${path}app.min.js`);
+   await dl("https://accessbeta.donggiatri.com/v1/cua-hang/",`${path}index.html`,null);
+   await dl("https://banhang.donggiatri.com/build/app.min.js",`${path}app.min.js`,null);
    await dl("https://banhang.donggiatri.com/build/jscore.js",`${path}jscore.js`,function(s){
      return s.replaceAll(`root: "/build/",`,`root: "/${uri}",`);
    });
-   await dl("https://banhang.donggiatri.com/build/app.min.css",`${path}app.min.css`);
-   await dl("https://banhang.donggiatri.com/build/csscore.css",`${path}csscore.css`);
+   await dl("https://banhang.donggiatri.com/build/app.min.css",`${path}app.min.css`,null);
+   await dl("https://banhang.donggiatri.com/build/csscore.css",`${path}csscore.css`,null);
   
 
   
