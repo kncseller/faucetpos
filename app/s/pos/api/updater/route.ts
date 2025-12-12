@@ -30,7 +30,7 @@ import { revalidatePath } from 'next/cache';
  
 // export const GET = withAuth(secretGET);
 
-async function dl(url,file,f=null){
+async function dl(url,file,f: any){
   let res = await axios.get(url);
   let pathToWriteImage = file; 
   
