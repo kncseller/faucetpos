@@ -35,7 +35,7 @@ async function dl(url,file,f=null){
   let pathToWriteImage = file; 
   
   let s = res.data;
-  if(typeof f=='function'){
+  if(typeof f==='function'){
      s = f(res.data);
   }
   return  fs.writeFile(pathToWriteImage, s);
