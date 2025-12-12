@@ -34,7 +34,10 @@ async function dl(url,file,f=null){
   let res = await axios.get(url);
   let pathToWriteImage = file; 
   
-  let s = f?f(res.data):res.data;
+  let s = res.data;
+  if(f!=null){
+     s = f(res.data);
+  }
   return  fs.writeFile(pathToWriteImage, s);
 }
 
